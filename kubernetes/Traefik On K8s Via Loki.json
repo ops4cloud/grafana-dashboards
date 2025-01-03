@@ -1,59 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_LOKI",
-      "label": "loki",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "loki",
-      "pluginName": "Loki"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "11.4.0"
-    },
-    {
-      "type": "panel",
-      "id": "logs",
-      "name": "Logs",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "loki",
-      "name": "Loki",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "piechart",
-      "name": "Pie chart",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "text",
-      "name": "Text",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -74,11 +19,15 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
+  "id": 8,
   "links": [],
   "panels": [
     {
       "description": "",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "gridPos": {
         "h": 2,
         "w": 24,
@@ -96,13 +45,14 @@
         "mode": "html"
       },
       "pluginVersion": "11.4.0",
+      "title": "",
       "transparent": true,
       "type": "text"
     },
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "P8E80F9AEF21F6940"
       },
       "description": "",
       "fieldConfig": {
@@ -151,7 +101,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "P8E80F9AEF21F6940"
           },
           "expr": "sum(count_over_time({app=~\"traefik\"} |= \"RequestProtocol\" [$__interval]))",
           "legendFormat": "",
@@ -166,7 +116,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "P8E80F9AEF21F6940"
       },
       "description": "",
       "fieldConfig": {
@@ -215,7 +165,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "P8E80F9AEF21F6940"
           },
           "expr": "sum by (OriginStatus) (count_over_time({app=~\"traefik\"}|= \"RequestProtocol\" | json |  __error__=\"\" [$__interval]))",
           "legendFormat": "HTTP Status: {{OriginStatus}}",
@@ -230,7 +180,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "P8E80F9AEF21F6940"
       },
       "description": "",
       "fieldConfig": {
@@ -287,7 +237,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "P8E80F9AEF21F6940"
           },
           "expr": " sum(rate({app=~\"traefik\"} |~ \"RequestProtocol\" | json | OriginStatus >= 400 |__error__=\"\"[$__interval])) / (sum(rate({app=~\"traefik\"} |~ \"RequestProtocol\" | json | __error__=\"\"[$__interval])) / 100)",
           "legendFormat": "",
@@ -302,7 +252,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "P8E80F9AEF21F6940"
       },
       "description": "",
       "fieldConfig": {
@@ -443,7 +393,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "P8E80F9AEF21F6940"
           },
           "expr": " sum by (OriginStatus,ServiceName) (count_over_time({app=~\"traefik\"} |~ \"RequestProtocol\" | json | OriginStatus >= 400 |__error__=\"\"[$__interval]))",
           "legendFormat": " {{ServiceName}} / {{OriginStatus}} ",
@@ -458,7 +408,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "P8E80F9AEF21F6940"
       },
       "description": "",
       "fieldConfig": {
@@ -514,7 +464,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "P8E80F9AEF21F6940"
           },
           "expr": "count(sum by (ClientHost) (count_over_time({app=~\"traefik\"}|= \"RequestProtocol\" | json |  __error__=\"\" [$__interval])))",
           "legendFormat": "",
@@ -529,7 +479,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "P8E80F9AEF21F6940"
       },
       "description": "",
       "fieldConfig": {
@@ -586,7 +536,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "P8E80F9AEF21F6940"
           },
           "expr": "sum_over_time({app=~\"traefik\"}|= \"RequestProtocol\" | json | OriginStatus=200 | unwrap DownstreamContentSize |  __error__=\"\" [$__interval])",
           "legendFormat": "Bytes sent",
@@ -621,7 +571,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "P8E80F9AEF21F6940"
       },
       "description": "",
       "fieldConfig": {
@@ -680,7 +630,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "P8E80F9AEF21F6940"
           },
           "expr": "sum by (RouterName) (count_over_time({app=~\"traefik\"}|= \"RequestProtocol\" | json |  __error__=\"\" [$__interval]))",
           "legendFormat": "{{RouterName}}",
@@ -695,7 +645,11 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
       },
       "gridPos": {
         "h": 8,
@@ -719,7 +673,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "P8E80F9AEF21F6940"
           },
           "expr": "{app=~\"traefik\"} |= \"RequestProtocol\"| json  | line_format \"Status:{{.OriginStatus}} Client From {{.ClientAddr}} {{.RequestMethod}} {{.RequestAddr}}{{.RequestPath}} Route To {{.ServiceAddr}}\"",
           "legendFormat": "",
@@ -734,7 +688,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "P8E80F9AEF21F6940"
       },
       "description": "",
       "fieldConfig": {
@@ -874,7 +828,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "P8E80F9AEF21F6940"
           },
           "expr": "quantile_over_time(0.95,{app=~\"traefik\"} |= \"RequestProtocol\"| json | unwrap Duration |  __error__=\"\"  [$__interval]) by (ServiceName)",
           "hide": false,
@@ -889,7 +843,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "P8E80F9AEF21F6940"
       },
       "description": "",
       "fieldConfig": {
@@ -1027,7 +981,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "P8E80F9AEF21F6940"
           },
           "expr": "max by (ServiceName) (max_over_time({app=~\"traefik\"} |= \"RequestProtocol\" |json | unwrap Duration |  __error__=\"\"  [$__interval]))",
           "hide": false,
@@ -1042,7 +996,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_LOKI}"
+        "uid": "P8E80F9AEF21F6940"
       },
       "description": "",
       "fieldConfig": {
@@ -1180,7 +1134,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_LOKI}"
+            "uid": "P8E80F9AEF21F6940"
           },
           "expr": "sum by (ServiceName) (sum_over_time({app=~\"traefik\"} |= \"RequestProtocol\" |json | unwrap RequestContentSize |  __error__=\"\"  [$__interval]))",
           "hide": false,
@@ -1193,6 +1147,7 @@
       "type": "timeseries"
     }
   ],
+  "preload": false,
   "refresh": "",
   "schemaVersion": 40,
   "tags": [],

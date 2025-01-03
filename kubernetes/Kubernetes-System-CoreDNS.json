@@ -1,47 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "Prometheus",
-      "label": "Prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "Prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "11.4.0"
-    },
-    {
-      "type": "panel",
-      "id": "heatmap",
-      "name": "Heatmap",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -68,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": null,
+  "id": 5,
   "links": [],
   "panels": [
     {
@@ -136,7 +93,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prometheus}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
           "expr": "up{job=~\"$job\", instance=~\"$instance\", cluster=~\"$cluster\"}",
@@ -234,7 +191,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prometheus}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
           "expr": "rate(process_cpu_seconds_total{job=~\"$job\", instance=~\"$instance\", cluster=~\"$cluster\"}[$__rate_interval])",
@@ -331,7 +288,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prometheus}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
           "expr": "process_resident_memory_bytes{job=~\"$job\", instance=~\"$instance\", cluster=~\"$cluster\"}",
@@ -428,7 +385,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prometheus}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
           "expr": "sum(rate(coredns_dns_requests_total{instance=~\"$instance\",proto=\"$protocol\", cluster=~\"$cluster\"}[$__rate_interval]))",
@@ -525,7 +482,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prometheus}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
           "expr": "sum(rate(coredns_dns_request_size_bytes_sum{instance=~\"$instance\",proto=\"$protocol\", cluster=~\"$cluster\"}[$__rate_interval])) by (proto) / sum(rate(coredns_dns_request_size_bytes_count{instance=~\"$instance\",proto=\"$protocol\", cluster=~\"$cluster\"}[$__rate_interval])) by (proto)",
@@ -622,7 +579,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prometheus}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
           "expr": "sum(rate(coredns_dns_requests_total{instance=~\"$instance\", cluster=~\"$cluster\"}[$__rate_interval])) by (type)",
@@ -719,7 +676,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prometheus}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
           "expr": "sum(rate(coredns_dns_responses_total{instance=~\"$instance\", cluster=~\"$cluster\"}[$__rate_interval])) by (rcode)",
@@ -816,14 +773,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prometheus}"
+            "uid": "${datasource}"
           },
-          "editorMode": "code",
           "exemplar": true,
           "expr": "sum(rate(coredns_forward_requests_total{cluster=~\"$cluster\"}[$__rate_interval]))",
           "interval": "$resolution",
           "legendFormat": "total forward requests",
-          "range": true,
           "refId": "A"
         }
       ],
@@ -915,14 +870,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prometheus}"
+            "uid": "${datasource}"
           },
-          "editorMode": "code",
           "exemplar": true,
           "expr": "sum(rate(coredns_forward_responses_total{rcode=~\"SERVFAIL|REFUSED\", cluster=~\"$cluster\"}[$__rate_interval])) by (rcode)",
           "interval": "$resolution",
           "legendFormat": "{{ rcode }}",
-          "range": true,
           "refId": "A"
         }
       ],
@@ -1014,7 +967,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prometheus}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
           "expr": "sum(rate(coredns_cache_hits_total{instance=~\"$instance\", cluster=~\"$cluster\"}[$__rate_interval])) by (type)",
@@ -1040,7 +993,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${Prometheus}"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1137,7 +1090,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${Prometheus}"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1217,7 +1170,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${Prometheus}"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1297,7 +1250,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${Prometheus}"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1375,13 +1328,20 @@
       "type": "heatmap"
     }
   ],
+  "preload": false,
   "refresh": "30s",
   "schemaVersion": 40,
-  "tags": [],
+  "tags": [
+    "Kubernetes",
+    "Prometheus"
+  ],
   "templating": {
     "list": [
       {
-        "current": {},
+        "current": {
+          "text": "Prometheus",
+          "value": "PBFA97CFB590B2093"
+        },
         "includeAll": false,
         "name": "datasource",
         "options": [],
@@ -1391,10 +1351,13 @@
         "type": "datasource"
       },
       {
-        "current": {},
+        "current": {
+          "text": "cluster-prod",
+          "value": "cluster-prod"
+        },
         "datasource": {
           "type": "prometheus",
-          "uid": "${Prometheus}"
+          "uid": "${datasource}"
         },
         "definition": "label_values(kube_node_info,cluster)",
         "includeAll": false,
@@ -1412,7 +1375,10 @@
       },
       {
         "allValue": ".*",
-        "current": {},
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
         "datasource": {
           "type": "prometheus",
           "uid": "${datasource}"
@@ -1433,10 +1399,13 @@
       },
       {
         "allValue": "udp,tcp",
-        "current": {},
+        "current": {
+          "text": "udp",
+          "value": "udp"
+        },
         "datasource": {
           "type": "prometheus",
-          "uid": "${Prometheus}"
+          "uid": "${datasource}"
         },
         "definition": "label_values(coredns_dns_requests_total{cluster=\"$cluster\"}, proto)",
         "includeAll": false,
@@ -1494,7 +1463,14 @@
         "type": "custom"
       },
       {
-        "current": {},
+        "current": {
+          "text": [
+            "coredns"
+          ],
+          "value": [
+            "coredns"
+          ]
+        },
         "datasource": {
           "type": "prometheus",
           "uid": "${datasource}"
@@ -1523,7 +1499,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "Kubernetes / System / CoreDNS",
-  "uid": "ee7hrd3cn4yrka",
+  "uid": "k8s_system_coredns",
   "version": 1,
   "weekStart": ""
 }

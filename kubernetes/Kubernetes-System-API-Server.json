@@ -1,67 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "Prometheus",
-      "label": "Prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "Prometheus",
-      "pluginName": "Prometheus"
-    },
-    {
-      "name": "DS_LOKI",
-      "label": "loki",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "Loki",
-      "pluginName": "Loki"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "11.4.0"
-    },
-    {
-      "type": "panel",
-      "id": "logs",
-      "name": "Logs",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "loki",
-      "name": "Loki",
-      "version": "1.0.0"
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "table",
-      "name": "Table",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -88,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": null,
+  "id": 4,
   "links": [],
   "panels": [
     {
@@ -156,7 +93,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prome"Prometheus"}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
           "expr": "up{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}",
@@ -242,7 +179,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prome"Prometheus"}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
           "expr": "apiserver_requested_deprecated_apis{cluster=~\"$cluster\"}",
@@ -334,8 +271,64 @@
     },
     {
       "datasource": {
-        "type": "loki",
-        "uid": "${DS_LOKI}"
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 25,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 8,
@@ -343,32 +336,35 @@
         "x": 0,
         "y": 8
       },
-      "id": 61,
+      "id": 38,
       "options": {
-        "dedupStrategy": "none",
-        "enableLogDetails": true,
-        "prettifyLogMessage": false,
-        "showCommonLabels": false,
-        "showLabels": false,
-        "showTime": false,
-        "sortOrder": "Descending",
-        "wrapLogMessage": false
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
       },
       "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
-            "type": "loki",
-            "uid": "${DS_LOKI}"
+            "type": "prometheus",
+            "uid": "${datasource}"
           },
-          "editorMode": "builder",
-          "expr": "{namespace=~\"kube-system\"} |= ``",
-          "queryType": "range",
+          "exemplar": true,
+          "expr": "sum by (code) (rate(apiserver_request_total{cluster=~\"$cluster\"}[$__rate_interval]))",
+          "interval": "$resolution",
+          "legendFormat": "{{ code }}",
           "refId": "A"
         }
       ],
-      "title": "Logs",
-      "type": "logs"
+      "title": "API Server - HTTP Requests by code",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -455,7 +451,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prome"Prometheus"}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
           "expr": "sum by (verb) (rate(apiserver_request_total{cluster=~\"$cluster\"}[$__rate_interval]))",
@@ -524,7 +520,7 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "ms"
         },
         "overrides": []
       },
@@ -534,7 +530,7 @@
         "x": 0,
         "y": 16
       },
-      "id": 38,
+      "id": 53,
       "options": {
         "legend": {
           "calcs": [],
@@ -543,8 +539,8 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "multi",
-          "sort": "desc"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "11.4.0",
@@ -552,16 +548,16 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prome"Prometheus"}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum by (code) (rate(apiserver_request_total{cluster=~\"$cluster\"}[$__rate_interval]))",
+          "expr": "sum(rate(apiserver_request_duration_seconds_sum{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval])) by (instance)\n/\nsum(rate(apiserver_request_duration_seconds_count{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval])) by (instance)",
           "interval": "$resolution",
-          "legendFormat": "{{ code }}",
+          "legendFormat": "{{ instance }}",
           "refId": "A"
         }
       ],
-      "title": "API Server - HTTP Requests by code",
+      "title": "API Server - HTTP Requests Latency by instance",
       "type": "timeseries"
     },
     {
@@ -649,7 +645,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prome"Prometheus"}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
           "expr": "sum(rate(apiserver_request_duration_seconds_sum{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval])) by (verb)\n/\nsum(rate(apiserver_request_duration_seconds_count{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval])) by (verb)",
@@ -718,7 +714,7 @@
               }
             ]
           },
-          "unit": "ms"
+          "unit": "short"
         },
         "overrides": []
       },
@@ -728,7 +724,7 @@
         "x": 0,
         "y": 24
       },
-      "id": 53,
+      "id": 50,
       "options": {
         "legend": {
           "calcs": [],
@@ -746,16 +742,16 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prome"Prometheus"}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum(rate(apiserver_request_duration_seconds_sum{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval])) by (instance)\n/\nsum(rate(apiserver_request_duration_seconds_count{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval])) by (instance)",
+          "expr": "sum by(instance) (rate(apiserver_request_total{code=~\"5..\", job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval]))\n / sum by(instance) (rate(apiserver_request_total{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval]))",
           "interval": "$resolution",
           "legendFormat": "{{ instance }}",
           "refId": "A"
         }
       ],
-      "title": "API Server - HTTP Requests Latency by instance",
+      "title": "API Server - Errors by Instance",
       "type": "timeseries"
     },
     {
@@ -843,7 +839,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prome"Prometheus"}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
           "expr": "sum by(verb) (rate(apiserver_request_total{code=~\"5..\",job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval]))\n / sum by(verb) (rate(apiserver_request_total{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval]))",
@@ -892,7 +888,7 @@
             "spanNulls": false,
             "stacking": {
               "group": "A",
-              "mode": "none"
+              "mode": "normal"
             },
             "thresholdsStyle": {
               "mode": "off"
@@ -922,7 +918,7 @@
         "x": 0,
         "y": 32
       },
-      "id": 50,
+      "id": 40,
       "options": {
         "legend": {
           "calcs": [],
@@ -940,16 +936,16 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prome"Prometheus"}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum by(instance) (rate(apiserver_request_total{code=~\"5..\", job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval]))\n / sum by(instance) (rate(apiserver_request_total{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval]))",
+          "expr": "sum(rate(apiserver_request_total{cluster=~\"$cluster\"}[$__rate_interval])) by (instance)",
           "interval": "$resolution",
           "legendFormat": "{{ instance }}",
           "refId": "A"
         }
       ],
-      "title": "API Server - Errors by Instance",
+      "title": "API Server - Stacked HTTP Requests by instance",
       "type": "timeseries"
     },
     {
@@ -1037,7 +1033,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prome"Prometheus"}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
           "expr": "sum(rate(workqueue_depth{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval])) by (instance)",
@@ -1047,198 +1043,6 @@
         }
       ],
       "title": "API Server - Work Queue by instance",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 25,
-            "gradientMode": "opacity",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "smooth",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "normal"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 40
-      },
-      "id": 40,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.4.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${Prome"Prometheus"}"
-          },
-          "exemplar": true,
-          "expr": "sum(rate(apiserver_request_total{cluster=~\"$cluster\"}[$__rate_interval])) by (instance)",
-          "interval": "$resolution",
-          "legendFormat": "{{ instance }}",
-          "refId": "A"
-        }
-      ],
-      "title": "API Server - Stacked HTTP Requests by instance",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 25,
-            "gradientMode": "opacity",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "smooth",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "bytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 40
-      },
-      "id": 48,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.4.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${Prome"Prometheus"}"
-          },
-          "exemplar": true,
-          "expr": "process_resident_memory_bytes{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}",
-          "interval": "$resolution",
-          "legendFormat": "{{ instance }}",
-          "refId": "A"
-        }
-      ],
-      "title": "API Server - Memory Usage by instance",
       "type": "timeseries"
     },
     {
@@ -1290,7 +1094,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1306,7 +1111,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 48
+        "y": 40
       },
       "id": 47,
       "options": {
@@ -1326,7 +1131,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Prome"Prometheus"}"
+            "uid": "${datasource}"
           },
           "exemplar": true,
           "expr": "rate(process_cpu_seconds_total{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval])",
@@ -1337,15 +1142,119 @@
       ],
       "title": "API Server - CPU Usage by instance",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 25,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 40
+      },
+      "id": 48,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "exemplar": true,
+          "expr": "process_resident_memory_bytes{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}",
+          "interval": "$resolution",
+          "legendFormat": "{{ instance }}",
+          "refId": "A"
+        }
+      ],
+      "title": "API Server - Memory Usage by instance",
+      "type": "timeseries"
     }
   ],
+  "preload": false,
   "refresh": "30s",
   "schemaVersion": 40,
-  "tags": [],
+  "tags": [
+    "Kubernetes",
+    "Prometheus"
+  ],
   "templating": {
     "list": [
       {
-        "current": {},
+        "current": {
+          "text": "Prometheus",
+          "value": "PBFA97CFB590B2093"
+        },
         "includeAll": false,
         "name": "datasource",
         "options": [],
@@ -1355,7 +1264,10 @@
         "type": "datasource"
       },
       {
-        "current": {},
+        "current": {
+          "text": "cluster-prod",
+          "value": "cluster-prod"
+        },
         "datasource": {
           "type": "prometheus",
           "uid": "${datasource}"
@@ -1425,7 +1337,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "Kubernetes / System / API Server",
-  "uid": "fe7hqyrejnwn4f",
-  "version": 3,
+  "uid": "k8s_system_apisrv",
+  "version": 1,
   "weekStart": ""
 }
