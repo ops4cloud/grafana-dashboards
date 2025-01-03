@@ -1,7 +1,7 @@
 {
   "__inputs": [
     {
-      "name": "DS_PROMETHEUS",
+      "name": "Prometheus",
       "label": "Prometheus",
       "description": "",
       "type": "datasource",
@@ -150,7 +150,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": false,
           "expr": "avg(sum by (cpu) (rate(node_cpu_seconds_total{mode!~\"idle|iowait|steal\", instance=\"$instance\", cluster=\"$cluster\"}[$__rate_interval])))",
@@ -223,7 +223,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": false,
           "expr": "sum(node_memory_MemTotal_bytes{instance=\"$instance\", cluster=\"$cluster\"} - node_memory_MemAvailable_bytes{instance=\"$instance\", cluster=\"$cluster\"}) / sum(node_memory_MemTotal_bytes{instance=\"$instance\", cluster=\"$cluster\"})",
@@ -287,7 +287,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "sum(kube_pod_info{node=\"$node\", cluster=\"$cluster\"})",
@@ -426,7 +426,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "kube_pod_info{node=\"$node\", cluster=\"$cluster\"}",
@@ -575,7 +575,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": false,
           "expr": "sum(rate(node_cpu_seconds_total{mode!~\"idle|iowait|steal\", instance=\"$instance\", cluster=\"$cluster\"}[$__rate_interval]))",
@@ -640,7 +640,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "sum(machine_cpu_cores{node=\"$node\", cluster=\"$cluster\"})",
@@ -704,7 +704,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": false,
           "expr": "sum(node_memory_MemTotal_bytes{instance=\"$instance\", cluster=\"$cluster\"} - node_memory_MemAvailable_bytes{instance=\"$instance\", cluster=\"$cluster\"})",
@@ -769,7 +769,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "machine_memory_bytes{node=\"$node\", cluster=\"$cluster\"}",
@@ -842,7 +842,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "node_time_seconds{instance=\"$instance\", cluster=\"$cluster\"} - node_boot_time_seconds{instance=\"$instance\", cluster=\"$cluster\"}",
@@ -957,7 +957,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "avg(rate(node_cpu_seconds_total{instance=\"$instance\", cluster=\"$cluster\"}[$__rate_interval]) * 100) by (mode)",
@@ -1059,7 +1059,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "node_memory_MemTotal_bytes{instance=\"$instance\", cluster=\"$cluster\"} - node_memory_MemFree_bytes{instance=\"$instance\", cluster=\"$cluster\"} - (node_memory_Cached_bytes{instance=\"$instance\", cluster=\"$cluster\"} + node_memory_Buffers_bytes{instance=\"$instance\", cluster=\"$cluster\"})",
@@ -1083,7 +1083,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "node_memory_Cached_bytes{instance=\"$instance\", cluster=\"$cluster\"}",
@@ -1107,7 +1107,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "node_memory_MemFree_bytes{instance=\"$instance\", cluster=\"$cluster\"}",
@@ -1131,7 +1131,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "node_memory_SwapTotal_bytes{instance=\"$instance\", cluster=\"$cluster\"}",
@@ -1229,7 +1229,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "sum(rate(container_cpu_usage_seconds_total{node=\"$node\", image!=\"\", cluster=\"$cluster\"}[$__rate_interval])) by (pod)",
@@ -1326,7 +1326,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "sum(container_memory_working_set_bytes{node=\"$node\", image!=\"\", cluster=\"$cluster\"}) by (pod)",
@@ -1434,7 +1434,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1547,7 +1547,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1574,7 +1574,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1672,7 +1672,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1704,7 +1704,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1800,7 +1800,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1902,7 +1902,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1948,7 +1948,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2042,7 +2042,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2140,7 +2140,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "sum(rate(node_network_receive_errs_total{instance=\"$instance\", cluster=\"$cluster\"}[$__rate_interval]))",
@@ -2168,7 +2168,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2262,7 +2262,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2360,7 +2360,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "sum(rate(node_network_receive_drop_total{instance=\"$instance\", cluster=\"$cluster\"}[$__rate_interval]))",
@@ -2388,7 +2388,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2486,7 +2486,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2596,7 +2596,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2709,7 +2709,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2808,7 +2808,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "sum(kubelet_volume_stats_used_bytes{node=\"$node\", cluster=\"$cluster\"}) by (persistentvolumeclaim)",
@@ -2887,7 +2887,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2999,7 +2999,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -3099,7 +3099,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -3199,7 +3199,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -3298,7 +3298,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -3398,7 +3398,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -3497,7 +3497,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -3597,7 +3597,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -3696,7 +3696,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -3812,7 +3812,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_PROMETHEUS}"
+          "uid": "${Prometheus}"
         },
         "definition": "label_values(kube_node_info,cluster)",
         "includeAll": false,
@@ -3893,7 +3893,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_PROMETHEUS}"
+          "uid": "${Prometheus}"
         },
         "definition": "label_values(node_uname_info{nodename=~\"(?i:($node))\"}, instance)",
         "hide": 2,

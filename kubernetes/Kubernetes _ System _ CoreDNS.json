@@ -1,7 +1,7 @@
 {
   "__inputs": [
     {
-      "name": "DS_PROMETHEUS",
+      "name": "Prometheus",
       "label": "Prometheus",
       "description": "",
       "type": "datasource",
@@ -136,7 +136,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "up{job=~\"$job\", instance=~\"$instance\", cluster=~\"$cluster\"}",
@@ -234,7 +234,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "rate(process_cpu_seconds_total{job=~\"$job\", instance=~\"$instance\", cluster=~\"$cluster\"}[$__rate_interval])",
@@ -331,7 +331,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "process_resident_memory_bytes{job=~\"$job\", instance=~\"$instance\", cluster=~\"$cluster\"}",
@@ -428,7 +428,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "sum(rate(coredns_dns_requests_total{instance=~\"$instance\",proto=\"$protocol\", cluster=~\"$cluster\"}[$__rate_interval]))",
@@ -525,7 +525,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "sum(rate(coredns_dns_request_size_bytes_sum{instance=~\"$instance\",proto=\"$protocol\", cluster=~\"$cluster\"}[$__rate_interval])) by (proto) / sum(rate(coredns_dns_request_size_bytes_count{instance=~\"$instance\",proto=\"$protocol\", cluster=~\"$cluster\"}[$__rate_interval])) by (proto)",
@@ -622,7 +622,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "sum(rate(coredns_dns_requests_total{instance=~\"$instance\", cluster=~\"$cluster\"}[$__rate_interval])) by (type)",
@@ -719,7 +719,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "sum(rate(coredns_dns_responses_total{instance=~\"$instance\", cluster=~\"$cluster\"}[$__rate_interval])) by (rcode)",
@@ -816,7 +816,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -915,7 +915,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1014,7 +1014,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prometheus}"
           },
           "exemplar": true,
           "expr": "sum(rate(coredns_cache_hits_total{instance=~\"$instance\", cluster=~\"$cluster\"}[$__rate_interval])) by (type)",
@@ -1040,7 +1040,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1137,7 +1137,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1217,7 +1217,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1297,7 +1297,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${Prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1394,7 +1394,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_PROMETHEUS}"
+          "uid": "${Prometheus}"
         },
         "definition": "label_values(kube_node_info,cluster)",
         "includeAll": false,
@@ -1436,7 +1436,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_PROMETHEUS}"
+          "uid": "${Prometheus}"
         },
         "definition": "label_values(coredns_dns_requests_total{cluster=\"$cluster\"}, proto)",
         "includeAll": false,

@@ -1,7 +1,7 @@
 {
   "__inputs": [
     {
-      "name": "DS_PROMETHEUS",
+      "name": "Prometheus",
       "label": "Prometheus",
       "description": "",
       "type": "datasource",
@@ -156,7 +156,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prome"Prometheus"}"
           },
           "exemplar": true,
           "expr": "up{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}",
@@ -242,7 +242,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prome"Prometheus"}"
           },
           "exemplar": true,
           "expr": "apiserver_requested_deprecated_apis{cluster=~\"$cluster\"}",
@@ -455,7 +455,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prome"Prometheus"}"
           },
           "exemplar": true,
           "expr": "sum by (verb) (rate(apiserver_request_total{cluster=~\"$cluster\"}[$__rate_interval]))",
@@ -552,7 +552,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prome"Prometheus"}"
           },
           "exemplar": true,
           "expr": "sum by (code) (rate(apiserver_request_total{cluster=~\"$cluster\"}[$__rate_interval]))",
@@ -649,7 +649,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prome"Prometheus"}"
           },
           "exemplar": true,
           "expr": "sum(rate(apiserver_request_duration_seconds_sum{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval])) by (verb)\n/\nsum(rate(apiserver_request_duration_seconds_count{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval])) by (verb)",
@@ -746,7 +746,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prome"Prometheus"}"
           },
           "exemplar": true,
           "expr": "sum(rate(apiserver_request_duration_seconds_sum{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval])) by (instance)\n/\nsum(rate(apiserver_request_duration_seconds_count{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval])) by (instance)",
@@ -843,7 +843,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prome"Prometheus"}"
           },
           "exemplar": true,
           "expr": "sum by(verb) (rate(apiserver_request_total{code=~\"5..\",job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval]))\n / sum by(verb) (rate(apiserver_request_total{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval]))",
@@ -940,7 +940,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prome"Prometheus"}"
           },
           "exemplar": true,
           "expr": "sum by(instance) (rate(apiserver_request_total{code=~\"5..\", job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval]))\n / sum by(instance) (rate(apiserver_request_total{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval]))",
@@ -1037,7 +1037,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prome"Prometheus"}"
           },
           "exemplar": true,
           "expr": "sum(rate(workqueue_depth{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval])) by (instance)",
@@ -1133,7 +1133,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prome"Prometheus"}"
           },
           "exemplar": true,
           "expr": "sum(rate(apiserver_request_total{cluster=~\"$cluster\"}[$__rate_interval])) by (instance)",
@@ -1229,7 +1229,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prome"Prometheus"}"
           },
           "exemplar": true,
           "expr": "process_resident_memory_bytes{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}",
@@ -1326,7 +1326,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${Prome"Prometheus"}"
           },
           "exemplar": true,
           "expr": "rate(process_cpu_seconds_total{job=~\"kubernetes-apiservers|apiserver\", cluster=~\"$cluster\"}[$__rate_interval])",
